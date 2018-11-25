@@ -10,4 +10,10 @@ class SessionsTest < ActionDispatch::IntegrationTest
   	get root_path
   	assert flash.empty?
   end
+
+  test 'login with valid information' do
+  	skip 'This needs to be implemented'
+  	get login_path
+  	assert_template 'sessions/new'
+  end
 end

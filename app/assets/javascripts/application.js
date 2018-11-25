@@ -16,6 +16,3 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
-
-gem 'bootstrap'
-gem 'sprockets'
