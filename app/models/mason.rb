@@ -2,15 +2,16 @@
 #
 # Table name: masons
 #
-#  id               :integer          not null, primary key
-#  first_name       :string
-#  last_name        :string
-#  degree           :integer
-#  officer_position :integer
-#  email_address    :string
-#  phone_number     :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                :integer          not null, primary key
+#  first_name        :string
+#  last_name         :string
+#  degree            :integer
+#  officer_position  :integer
+#  email_address     :string
+#  phone_number      :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  membership_number :string
 #
 
 class Mason < ApplicationRecord
@@ -20,9 +21,11 @@ class Mason < ApplicationRecord
     :junior_warden, :senior_warden, :worshipful_master ]
 
   has_one :user_account
-  has_and_belongs_to_many :meetings
+  has_many :attendees
+  has_many :meetings, through: :attendees
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :membership_number
+  validates_uniqueness_of :membership_number
 
   before_save :validate_positions, unless: :check_nil_values
   before_save :set_defaults

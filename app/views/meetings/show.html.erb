@@ -1,0 +1,17 @@
+<h1><%= @meeting.name %></h1>
+<div class='row'>
+	<div class='col-md-12'>
+		<p>Occurred <%= @meeting.date_occurred.strftime("%d %B %Y") %></p>
+	</div>
+</div>
+
+<!-- TODO: Handle attendance -->
+<div class='row'>
+	<%= @brothers.inspect %>
+	<table class='table table-striped'>
+		
+	</table>
+</div>
+
+<!-- TODO: Handle visitors -->
+<p>Find me in app/views/meetings/show.html.erb</p>

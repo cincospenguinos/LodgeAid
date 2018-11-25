@@ -7,12 +7,13 @@
 #  date_occurred :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  name          :string
 #
 
 require 'test_helper'
 
 class MeetingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'meetings must have names' do
+  	assert_raises(Exception) { Meeting.create!(meeting_type: :business, date_occurred: DateTime.now) }
+  end
 end

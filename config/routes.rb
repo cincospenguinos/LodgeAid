@@ -9,4 +9,11 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  # Handling meetings
+  get '/meetings', to: 'meetings#index'
+  post '/meetings', to: 'meetings#create'
+  get '/meetings/:id', to: 'meetings#show', as: 'show_meeting'
+  post '/meetings/:id', to: 'meetings#attendance'
+  delete '/meetings/:id', to: 'meetings#destroy'
 end

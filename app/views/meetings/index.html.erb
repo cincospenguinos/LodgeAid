@@ -1,0 +1,21 @@
+<h1>Meetings</h1>
+<div class='row'>
+	<% if @meetings && @meetings.size > 0 %>
+		<table class='table table-striped'>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Type</th>
+			</tr>
+			<% @meetings.each do |meeting| %>
+				<tr>
+					<td><%= link_to meeting.name, show_meeting_path(id: meeting.id) %></td>
+					<td><%= meeting.date_occurred %></td>
+					<td><%= meeting.meeting_type %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p>No meetings to show!</p>
+	<% end %>
+</div>

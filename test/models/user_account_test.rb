@@ -16,10 +16,10 @@ require 'test_helper'
 class UserAccountTest < ActiveSupport::TestCase
 
 	setup do
-		@master = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :worshipful_master)
-		@secretary = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :secretary)
-		@tyler = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :tyler)
-		@mason = Mason.create!(first_name: 'Joe', last_name: 'Blow')
+		@master = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :worshipful_master, membership_number: Faker::String.unique.random(5))
+		@secretary = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :secretary, membership_number: Faker::String.unique.random(5))
+		@tyler = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :tyler, membership_number: Faker::String.unique.random(5))
+		@mason = Mason.create!(first_name: 'Joe', last_name: 'Blow',membership_number: Faker::String.unique.random(5))
 	end
 
   test 'Elected officers, tylers, and secretaries should be admins' do
