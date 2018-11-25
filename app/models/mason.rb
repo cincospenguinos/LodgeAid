@@ -24,7 +24,8 @@ class Mason < ApplicationRecord
 
   validates_presence_of :first_name, :last_name
 
-  before_save :validate_positions, :set_defaults
+  before_save :validate_positions, unless: :check_nil_values
+  before_save :set_defaults
 
   ## Sets default values
   def set_defaults
@@ -47,5 +48,9 @@ class Mason < ApplicationRecord
   ## Validates the positions of the current mason
   def validate_positions
     raise RuntimeError, 'Only Master Masons may be officers' if self.is_officer? && !self.can_be_officer?
+  end
+
+  def check_nil_values
+    self.degree.nil?
   end
 end
