@@ -7,4 +7,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def random_mason
+  	Mason.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, 
+			email_address: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone,
+			membership_number: Faker::String.unique.random(6))
+  end
 end
