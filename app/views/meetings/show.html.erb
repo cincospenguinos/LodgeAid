@@ -5,13 +5,20 @@
 	</div>
 </div>
 
-<!-- TODO: Handle attendance -->
 <div class='row'>
-	<%= @brothers.inspect %>
 	<table class='table table-striped'>
-		
+		<tr>
+			<th>Name</th>
+			<th>Present</th>
+		</tr>
+		<% @brothers.each do |brother| %>
+			<% data = { 'meeting-id' => @meeting.id, 'mason-id' => brother.id } %>
+			<tr>
+				<td><%= brother.full_name %></td>
+				<td><%= check_box('', brother.id, { checked: @attendees.include?(brother), class: 'attended-checkbox', data: data }) %></td>
+			</tr>
+		<% end %>
 	</table>
 </div>
 
 <!-- TODO: Handle visitors -->
-<p>Find me in app/views/meetings/show.html.erb</p>

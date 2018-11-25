@@ -11,10 +11,10 @@ class MeetingsController < ApplicationController
   ## GET /meetings/:id
   def show
   	@meeting = Meeting.find_by(id: params[:id])
-  	@brothers = Mason.where(meetings: [@meeting])
 
   	if @meeting
-
+      @brothers = Mason.all
+      @attendees = Mason.joins(:meetings).where(meetings: { id: @meeting.id })
   	else
   		# TODO: Show 404 page
   	end
@@ -22,7 +22,17 @@ class MeetingsController < ApplicationController
 
   ## POST /meetings/:id
   def attendance
-  	# TODO: Handle attendance. Should be via AJAX
+    # TODO: I'm not getting a brother_id from the request
+    @meeting = Meeting.find_by(id: params[:id])
+    @brother = Mason.find_by(id: params[:brother_id])
+    @attending = params[:attending]
+
+    if @meeting && @brother
+      @attending ? @meeting.masons << @brother : @meeting.delete(@brother)
+      render json: { success: true, message: '' }
+    else
+      render json: { success: false, message: 'Could not find brother or meeting'}
+    end
   end
 
   ## DELETE /meetings/:id

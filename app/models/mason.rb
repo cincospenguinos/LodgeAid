@@ -46,6 +46,11 @@ class Mason < ApplicationRecord
     self.degree.to_sym == :master_mason
   end
 
+  ## Get the full name of this brother
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
   private
 
   ## Validates the positions of the current mason

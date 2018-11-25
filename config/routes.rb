@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get '/meetings', to: 'meetings#index'
   post '/meetings', to: 'meetings#create'
   get '/meetings/:id', to: 'meetings#show', as: 'show_meeting'
-  post '/meetings/:id', to: 'meetings#attendance'
+  post '/meetings/:id', to: 'meetings#attendance', as: 'set_attendence'
   delete '/meetings/:id', to: 'meetings#destroy'
 end
