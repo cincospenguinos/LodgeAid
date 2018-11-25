@@ -15,4 +15,9 @@ class Meeting < ApplicationRecord
   has_and_belongs_to_many :masons
 
   validates_presence_of :date_occurred, :meeting_type
+
+  ## Alias for masons who attended the meeting
+  def attendees
+  	self.masons
+  end
 end

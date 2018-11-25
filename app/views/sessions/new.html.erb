@@ -1,0 +1,17 @@
+<% provide(:title, 'Log in') %>
+<h1>Login</h1>
+<div class='row'>
+	<div class='col-md-6'>
+		<%= form_for(:session, url: login_path) do |f| %>
+			<%= f.label(:username) %>
+			<%= f.text_field(:username, class: 'form-control') %>
+
+			<%= f.label(:password) %>
+			<%= f.password_field(:password, class: 'form-control') %>
+
+			<%= f.submit('Login', class: 'btn btn-primary') %>
+		<% end %>
+	</div>
+</div>
+
+<p>Not in the system? <!-- TODO: Setup link to signup --></p>
