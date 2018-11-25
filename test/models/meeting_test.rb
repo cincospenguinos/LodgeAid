@@ -23,7 +23,7 @@ class MeetingTest < ActiveSupport::TestCase
   	meeting.masons << mason
   	assert(meeting.masons.include?(mason))
 
-  	meeting.masons.remove(mason)
+  	meeting.masons.delete(mason)
   	assert(!meeting.masons.include?(mason))
   end
 end
