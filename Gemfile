@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Security vulnerabilities exist here, so we need to take care of those
+gem "rails-html-sanitizer", ">= 1.0.4"
+gem "nokogiri", ">= 1.8.2"
+gem "loofah", ">= 2.2.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'

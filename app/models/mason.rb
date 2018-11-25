@@ -24,10 +24,28 @@ class Mason < ApplicationRecord
 
   validates_presence_of :first_name, :last_name
 
-  after_initialize :set_defaults
+  before_save :validate_positions, :set_defaults
 
+  ## Sets default values
   def set_defaults
     self.degree ||= :master_mason
     self.officer_position ||= :no_position
+  end
+
+  ## Returns true if the mason is an officer
+  def is_officer?
+    self.officer_position.to_sym != :no_position
+  end
+
+  ## Returns true if the mason is in proper standing to be an officer
+  def can_be_officer?
+    self.degree.to_sym == :master_mason
+  end
+
+  private
+
+  ## Validates the positions of the current mason
+  def validate_positions
+    raise RuntimeError, 'Only Master Masons may be officers' if self.is_officer? && !self.can_be_officer?
   end
 end

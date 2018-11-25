@@ -19,7 +19,7 @@ class MasonTest < ActiveSupport::TestCase
   test 'only master masons can hold an officer position' do
     assert_raises(Exception) { Mason.create!(first_name: 'Joe', last_name: 'Guy', degree: :entered_apprentice, 
                                 officer_position: :junior_warden) }
-    
+    assert_nothing_raised { Mason.create!(first_name: 'Joe', last_name: 'Guy', degree: :master_mason, officer_position: :junior_warden) }
   end
 
   test 'first and last names must be available' do
