@@ -14,7 +14,30 @@
 require 'test_helper'
 
 class UserAccountTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+	setup do
+		@master = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :worshipful_master)
+		@secretary = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :secretary)
+		@tyler = Mason.create!(first_name: 'Joe', last_name: 'Blow', officer_position: :tyler)
+		@mason = Mason.create!(first_name: 'Joe', last_name: 'Blow')
+	end
+
+  test 'Elected officers, tylers, and secretaries should be admins' do
+  	some_guy = UserAccount.create!(mason: @master, username: 'guy', password: 'password')
+  	assert(some_guy.is_admin?)
+  	some_guy = UserAccount.create!(mason: @secretary, username: 'another_guy', password: 'password')
+  	assert(some_guy.is_admin?)
+  	some_guy = UserAccount.create!(mason: @secretary, username: 'still_another_guy', password: 'password')
+  	assert(some_guy.is_admin?)
+  end
+
+  test 'Masons who are not elected officers must not be admins' do
+  	user = UserAccount.create!(mason: @mason, username: 'still_another', password: 'password')
+  	assert(!user.is_admin?)
+  end
+
+  test 'Usernames are unique' do
+  	UserAccount.create!(mason: @master, username: 'TheDude', password: 'password')
+  	assert_raises(Exception) { UserAccount.create!(mason: @mason, username: 'TheDude', password: 'password')}
+  end
 end

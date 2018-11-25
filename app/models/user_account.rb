@@ -18,10 +18,22 @@ class UserAccount < ApplicationRecord
   belongs_to :mason
 
   validates_presence_of :username, :password_digest
+  validates_uniqueness_of :username
 
-  after_initialize :set_defaults
+  before_save :set_defaults
 
   def set_defaults
     self.permissions ||= :user
-  end  
+    self.permissions = :admin if mason_should_be_admin?
+  end
+
+  def is_admin?
+  	self.permissions.to_sym == :admin
+  end
+
+  private
+
+  def mason_should_be_admin?
+  	[ :worshipful_master, :senior_warden, :junior_warden, :secretary, :tyler ].include?(self.mason.officer_position.to_sym)
+  end
 end
