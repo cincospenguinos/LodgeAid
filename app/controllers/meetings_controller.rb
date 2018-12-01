@@ -23,12 +23,13 @@ class MeetingsController < ApplicationController
   ## POST /meetings/:id
   def attendance
     # TODO: I'm not getting a brother_id from the request
+    # byebug
     @meeting = Meeting.find_by(id: params[:id])
-    @brother = Mason.find_by(id: params[:brother_id])
-    @attending = params[:attending]
+    @brother = Mason.find_by(id: params[:mason].to_i)
+    @attending = (params[:attending] == 'true')
 
     if @meeting && @brother
-      @attending ? @meeting.masons << @brother : @meeting.delete(@brother)
+      @attending ? @meeting.masons << @brother : @meeting.masons.delete(@brother)
       render json: { success: true, message: '' }
     else
       render json: { success: false, message: 'Could not find brother or meeting'}

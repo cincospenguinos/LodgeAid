@@ -6,7 +6,7 @@ Application to hold together a variety of things for a lodge. For now that's jus
 
 - [ ] Masons are all included as users, with potential to have login credentials
 - [x] Officer positions are assigned to Masons
-- [ ] Attendance can be taken for various meetings
+- [x] Attendance can be taken for various meetings
 - [ ] Attendance for various brothers can be searched and displayed
 - [ ] Officers/admins can create meetings
 - [ ] Suspended or expelled masons are included and managed appropriately
