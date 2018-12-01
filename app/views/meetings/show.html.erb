@@ -1,19 +1,22 @@
 <h1><%= @meeting.name %></h1>
-<div class='row'>
-	<div class='col-md-12'>
+<div class='row meetings-row'>
+	<div class='col-md-4'>
+		<input id='show-meeting-search' class='form-control' type='text' placeholder="Search"/>
+	</div>
+	<div class='col-md-8'>
 		<p>Occurred <%= @meeting.date_occurred.strftime("%d %B %Y") %></p>
 	</div>
 </div>
 
-<div class='row'>
-	<table class='table table-striped'>
+<div class='row meetings-row'>
+	<table id='show-meeting-table' class='table table-striped'>
 		<tr>
 			<th>Name</th>
 			<th>Present</th>
 		</tr>
 		<% @brothers.each do |brother| %>
 			<% data = { 'meeting-id' => @meeting.id, 'mason-id' => brother.id } %>
-			<tr>
+			<tr class='show-meeting-brother'>
 				<td><%= brother.full_name %></td>
 				<td><%= check_box('', brother.id, { checked: @attendees.include?(brother), class: 'attended-checkbox', data: data }) %></td>
 			</tr>
