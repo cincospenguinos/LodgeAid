@@ -1,0 +1,12 @@
+<% if @user.verified %>
+	<!-- TODO: Header showing some things -->
+
+	<% if @user.is_admin? %>
+		<!-- TODO: admin stuff here -->
+	<% end %>
+<% else %>
+	<h1>Hello, <%= @user.mason.full_name %>!</h1>
+	<p>An admin to this application has not yet accepted your application. You will be notified when he does so, 
+		and this page will be populated as well. Please be patient and contact your secretary if you have further
+		questions.</p>
+<% end %>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  # Dashboard
+  get '/dashboard', to: 'sessions#show', as: 'dashboard'
+
   # Handling meetings
   get '/meetings', to: 'meetings#index'
   post '/meetings', to: 'meetings#create'
