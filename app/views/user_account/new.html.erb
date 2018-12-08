@@ -1,22 +1,24 @@
 <h1>Signup</h1>
 <div class='row'>
-	<div class='col-md-6'>
+	<div class='col-xl-12'>
 		<%= form_for(:user_account) do |f| %>
+			<%= render 'shared/error_messages' %>
+
 			<%= f.label(:username) %>
 			<%= f.text_field(:username, class: 'form-control') %>
 
 			<%= f.label(:password) %>
 			<%= f.password_field(:password, class: 'form-control') %>
 
-			<%= f.label(:first_name) %>
-			<%= f.text_field(:first_name, class: 'form-control') %>
+			<%= f.label(:password_confirmation) %>
+			<%= f.password_field(:password_confirmation, class: 'form-control') %>
 
-			<%= f.label(:last_name) %>
-			<%= f.text_field(:last_name, class: 'form-control') %>
+			<%= f.label(:membership_number) %>
+			<%= f.text_field(:membership_number, class: 'form-control') %>
 
 			<%= f.submit('Submit', class: 'btn btn-primary') %>
 		<% end %>
 	</div>
 
-	<p>Your lodge secretary will review every request for a new account before it is provided.</p>
+	<p>The lodge secretary or another admin will process your request. You will be notified when that is finished.</p>
 </div>

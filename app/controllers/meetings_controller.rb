@@ -22,8 +22,6 @@ class MeetingsController < ApplicationController
 
   ## POST /meetings/:id
   def attendance
-    # TODO: I'm not getting a brother_id from the request
-    # byebug
     @meeting = Meeting.find_by(id: params[:id])
     @brother = Mason.find_by(id: params[:mason].to_i)
     @attending = (params[:attending] == 'true')

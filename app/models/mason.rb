@@ -59,6 +59,6 @@ class Mason < ApplicationRecord
   end
 
   def check_nil_values
-    self.degree.nil?
+    self.degree.nil? || self.officer_position.nil?
   end
 end

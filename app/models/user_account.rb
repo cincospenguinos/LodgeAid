@@ -9,6 +9,7 @@
 #  mason_id        :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  verified        :boolean
 #
 
 class UserAccount < ApplicationRecord
@@ -20,11 +21,14 @@ class UserAccount < ApplicationRecord
   validates_presence_of :username, :password_digest
   validates_uniqueness_of :username
 
+  validates :password, length: { within: 6..28 }
+
   before_save :set_defaults
 
   def set_defaults
     self.permissions ||= :user
     self.permissions = :admin if mason_should_be_admin?
+    self.verified = false
   end
 
   def is_admin?

@@ -9,6 +9,7 @@
 #  mason_id        :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  verified        :boolean
 #
 
 require 'test_helper'
@@ -39,5 +40,15 @@ class UserAccountTest < ActiveSupport::TestCase
   test 'Usernames are unique' do
   	UserAccount.create!(mason: @master, username: 'TheDude', password: 'password')
   	assert_raises(Exception) { UserAccount.create!(mason: @mason, username: 'TheDude', password: 'password')}
+  end
+
+  test 'Passwords have a length of six' do
+    UserAccount.create!(mason: @master, username: 'SomeDude', password: 'password')
+    assert_raises(Exception) { UserAccount.create!(mason: @master, username: 'SomeDude', password: 'pass') }
+  end
+
+  test 'Password and password confirmation are the same' do
+    UserAccount.create!(mason: @master, username: 'SomeOtherOtherDude', password: 'password', password_confirmation: 'password')
+    assert_raises(Exception) { UserAccount.create!(mason: @master, username: 'SomeOtherDude', password: 'password', password_confirmation: 'passwor') }
   end
 end

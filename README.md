@@ -16,6 +16,7 @@ Application to hold together a variety of things for a lodge. For now that's jus
 
 - [ ] Tests for signing up
 - [ ] Test for logging in with good credentials
+- [ ] Tests for adding people to meetings
 
 ## Ideas
 
